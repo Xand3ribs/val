@@ -81,4 +81,5 @@ h1{
     font-size: 24px;
     color: red;
     animation: float 3s linear infinite;
+    z-index: 9999;
 }

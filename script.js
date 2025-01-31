@@ -18,15 +18,25 @@ moveRandom.addEventListener("touchstart", function (e) {
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML = "💖"; // You can change to 💕 or 💖
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.animationDuration = Math.random() * 2 + 3 + "s"; // Random speed
+    heart.innerHTML = "💖"; // Change to another emoji if you like
     document.body.appendChild(heart);
+
+    // Set random position
+    heart.style.position = "absolute";
+    heart.style.left = Math.random() * window.innerWidth + "px";
+    heart.style.top = window.innerHeight + "px";  // Start at the bottom
+    heart.style.fontSize = Math.random() * 30 + 20 + "px"; // Vary sizes
+
+    heart.style.animationDuration = Math.random() * 3 + 2 + "s"; // Vary speed
 
     setTimeout(() => {
         heart.remove();
-    }, 5000); // Remove after 5 seconds
+    }, 5000);
 }
+
+// Generate hearts every 500ms
+setInterval(createHeart, 500);
+
 
 // Generate hearts every 500ms
 setInterval(createHeart, 500);
