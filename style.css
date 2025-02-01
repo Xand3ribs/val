@@ -63,6 +63,17 @@ h1{
     }
 }
 
+.heart {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    font-size: 24px;
+    color: red;
+    animation: float 5s linear infinite;
+    pointer-events: none; /* Prevent interaction */
+    transform: translateX(-50%);
+}
+
 @keyframes float {
     0% {
         transform: translateY(0) scale(1);
@@ -74,12 +85,3 @@ h1{
     }
 }
 
-.heart {
-    position: fixed;
-    bottom: 0;
-    left: 50%;
-    font-size: 24px;
-    color: red;
-    animation: float 3s linear infinite;
-    z-index: 9999;
-}

@@ -18,19 +18,19 @@ moveRandom.addEventListener("touchstart", function (e) {
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML = "💖"; // Change to another emoji if you like
+    heart.innerHTML = "💖"; // You can change to 💕 or ❤️
+
+    // Randomize position
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.top = "100vh"; // Start from bottom
+    heart.style.position = "fixed";
+    heart.style.fontSize = Math.random() * 20 + 10 + "px"; // Random size
+    heart.style.animationDuration = Math.random() * 3 + 2 + "s"; // Random speed
+
     document.body.appendChild(heart);
 
-    // Set random position
-    heart.style.position = "absolute";
-    heart.style.left = Math.random() * window.innerWidth + "px";
-    heart.style.top = window.innerHeight + "px";  // Start at the bottom
-    heart.style.fontSize = Math.random() * 30 + 20 + "px"; // Vary sizes
-
-    heart.style.animationDuration = Math.random() * 3 + 2 + "s"; // Vary speed
-
     setTimeout(() => {
-        heart.remove();
+        heart.remove(); // Remove after animation ends
     }, 5000);
 }
 
@@ -38,5 +38,12 @@ function createHeart() {
 setInterval(createHeart, 500);
 
 
-// Generate hearts every 500ms
-setInterval(createHeart, 500);
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Script loaded!");
+
+    // Check if we are on the "Yes" page
+    if (document.body.id === "yes-page") {
+        console.log("Starting heart animation...");
+        setInterval(createHeart, 500); // Generate hearts every 500ms
+    }
+});
