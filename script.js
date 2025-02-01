@@ -45,3 +45,15 @@ function createHeart() {
         heart.remove();
     }, 5000);
 }
+
+
+window.onload = function() {
+    if (!localStorage.getItem("audioPlayed")) {
+        localStorage.setItem("audioPlayed", "true");
+        var audio = new Audio("love.mp3"); // Correct path to MP3 file
+        audio.loop = true; // Loop the audio
+        audio.play().catch((error) => {
+            console.error('Error playing audio:', error);
+        });
+    }
+};
