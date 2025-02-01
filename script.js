@@ -1,24 +1,36 @@
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("Script loaded!");
+
+    // Handle move-random button (Only if it exists)
+    const moveRandom = document.querySelector("#move-random");
+    if (moveRandom) {
+        moveRandom.addEventListener("mouseenter", function (e) {
+            moveRandomEl(e.target);
+        });
+
+        moveRandom.addEventListener("touchstart", function (e) {
+            moveRandomEl(e.target);
+            e.preventDefault();
+        });
+    }
+
+    // Start heart animation only on "Yes" page
+    if (document.body.id === "yes-page") {
+        console.log("Starting heart animation...");
+        setInterval(createHeart, 500);
+    }
+});
+
 function moveRandomEl(elm) {
     elm.style.position = "absolute";
     elm.style.top = Math.floor(Math.random() * 90 + 5) + "%";
     elm.style.left = Math.floor(Math.random() * 90 + 5) + "%";
 }
 
-const moveRandom = document.querySelector("#move-random");
-
-moveRandom.addEventListener("mouseenter", function (e) {
-    moveRandomEl(e.target);
-});
-
-moveRandom.addEventListener("touchstart", function (e) {
-    moveRandomEl(e.target);
-    e.preventDefault(); 
-});
-
 function createHeart() {
     const heart = document.createElement("div");
     heart.classList.add("heart");
-    heart.innerHTML = "💖"; // You can change to 💕 or ❤️
+    heart.innerHTML = "💖"; // Change to 💕 or ❤️ if needed
 
     // Randomize position
     heart.style.left = Math.random() * 100 + "vw";
@@ -30,20 +42,6 @@ function createHeart() {
     document.body.appendChild(heart);
 
     setTimeout(() => {
-        heart.remove(); // Remove after animation ends
+        heart.remove();
     }, 5000);
 }
-
-// Generate hearts every 500ms
-setInterval(createHeart, 500);
-
-
-document.addEventListener("DOMContentLoaded", () => {
-    console.log("Script loaded!");
-
-    // Check if we are on the "Yes" page
-    if (document.body.id === "yes-page") {
-        console.log("Starting heart animation...");
-        setInterval(createHeart, 500); // Generate hearts every 500ms
-    }
-});
